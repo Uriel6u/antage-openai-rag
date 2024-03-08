@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css';
 
 export default function Main() {
+  // State to store the selected file
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  // Event handler for file input change
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+
+  // Event handler for upload button click
+  const handleUpload = () => {
+    // Perform upload logic with the selectedFile
+    if (selectedFile) {
+      // You can use this selectedFile for further processing, e.g., uploading to a server.
+      console.log('Selected File:', selectedFile);
+      // Add your upload logic here
+    } else {
+      console.log('No file selected');
+    }
+  };
+
   return (
     <div className='main-container w-[1751px] h-[1638px] relative mx-auto my-0'>
-      <div className='w-[102px] h-[84px] bg-[url(../assets/images/7188b99c0198aaf424ac0fcc807454f2bc10a627.png)] bg-cover bg-no-repeat relative z-10 mt-[16px] mr-0 mb-0 ml-[13px]' />
-      <div className='w-[303px] h-[292px] bg-[url(../assets/images/8d693e62c09fff0dc595db54b7b6aa8f044eeea4.png)] bg-cover bg-no-repeat rounded-[39px] relative z-[9] mt-[18px] mr-0 mb-0 ml-[713px]' />
+      <div className='w-[102px] h-[84px] bg-[url(../assets/images/Antagelogo.png)] bg-cover bg-no-repeat relative z-10 mt-[16px] mr-0 mb-0 ml-[13px]' />
+      <div className='w-[303px] h-[292px] bg-[url(../assets/images/OpenAI.png)] bg-cover bg-no-repeat rounded-[39px] relative z-[9] mt-[18px] mr-0 mb-0 ml-[713px]' />
       <span className="block h-[53px] font-['B612_Mono'] text-[36px] font-normal leading-[43.74px] text-[#fff] relative text-left whitespace-nowrap z-[6] mt-[13px] mr-0 mb-0 ml-[683px]">
         Tuesday,Feb 27
       </span>
@@ -26,11 +47,18 @@ export default function Main() {
         commodo consequat."
       </span>
       <div className='flex w-[127px] pt-[10px] pr-[10px] pb-[10px] pl-[10px] gap-[10px] justify-center items-center flex-nowrap relative z-[11] mt-[496px] mr-0 mb-0 ml-[204px]'>
-        <button className='flex w-[138px] pt-[10px] pr-[10px] pb-[10px] pl-[10px] gap-[10px] justify-center items-center shrink-0 flex-nowrap bg-[#cdd4df] rounded-[20px] border-none relative z-[12] pointer'>
+        {/* File input */}
+        <input type="file" accept=".png, .jpg, .jpeg" onChange={handleFileChange} style={{ display: 'none' }} id="fileInput" />
+        
+        {/* Upload button */}
+        <label htmlFor="fileInput" className='flex w-[138px] pt-[10px] pr-[10px] pb-[10px] pl-[10px] gap-[10px] justify-center items-center shrink-0 flex-nowrap bg-[#cdd4df] rounded-[20px] border-none relative z-[12] pointer'>
           <span className="h-[36px] shrink-0 basis-auto font-['B612_Mono'] text-[30px] font-bold leading-[36px] text-[#1a1717] relative text-left whitespace-nowrap z-[13]">
             Upload
           </span>
-        </button>
+        </label>
+
+        {/* Display selected file name */}
+        {selectedFile && <p>{selectedFile.name}</p>}
       </div>
       <div className='w-full h-full bg-[#1e293c] border-solid border border-[#000] absolute top-0 left-0' />
       <div className='w-[76.76%] h-[24.54%] bg-[#3e3b3b] rounded-[15px] border-solid border-2 border-[#fdf3f3] absolute top-[68.93%] left-[11.65%] box-content z-[1]' />
