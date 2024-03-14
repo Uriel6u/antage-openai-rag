@@ -17,8 +17,8 @@ const openAI = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const mainAssistantID = process.env.MAIN_ASSISTANT_ID;
-const helperAssistantID = process.env.HELPER_ASSISTANT_ID;
+const mainAssistantID = process.env.MAIN_ASSISTANT_ID || "";
+const helperAssistantID = process.env.ASSISTANT_HELPER_ID || "";
 
 const helperAssistant = new Helper(helperAssistantID);
 
