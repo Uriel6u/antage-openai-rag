@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './index.css';
 
+
 export default function Main() {
   // State to store the selected file
   const [selectedFile, setSelectedFile] = useState(null);
+  const [userInput, setUserInput] = useState(''); // State to store user input
 
   // Event handler for file input change
   const handleFileChange = (event) => {
@@ -23,6 +25,14 @@ export default function Main() {
     }
   };
 
+
+  const handleSend = () => {
+    // Action when user hits Send button
+    console.log('User input:', userInput);
+    // add code here which sends the user input to the chatbot
+
+    
+  };
   return (
     <div className='main-container w-[1751px] h-[1638px] relative mx-auto my-0'>
       <div className='w-[102px] h-[84px] bg-[url(../assets/images/Antagelogo.png)] bg-cover bg-no-repeat relative z-10 mt-[16px] mr-0 mb-0 ml-[13px]' />
@@ -48,7 +58,7 @@ export default function Main() {
       </span>
       <div className='flex w-[127px] pt-[10px] pr-[10px] pb-[10px] pl-[10px] gap-[10px] justify-center items-center flex-nowrap relative z-[11] mt-[496px] mr-0 mb-0 ml-[204px]'>
         {/* File input */}
-        <input type="file" accept=".png, .jpg, .jpeg" onChange={handleFileChange} style={{ display: 'none' }} id="fileInput" />
+        <input type="file" accept=".png, .jpg, .jpeg, .CSV" onChange={handleFileChange} style={{ display: 'none' }} id="fileInput" />
         
         {/* Upload button */}
         <label htmlFor="fileInput" className='flex w-[138px] pt-[10px] pr-[10px] pb-[10px] pl-[10px] gap-[10px] justify-center items-center shrink-0 flex-nowrap bg-[#cdd4df] rounded-[20px] border-none relative z-[12] pointer'>
@@ -60,13 +70,34 @@ export default function Main() {
         {/* Display selected file name */}
         {selectedFile && <p>{selectedFile.name}</p>}
       </div>
+
+     
       <div className='w-full h-full bg-[#1e293c] border-solid border border-[#000] absolute top-0 left-0' />
       <div className='w-[76.76%] h-[24.54%] bg-[#3e3b3b] rounded-[15px] border-solid border-2 border-[#fdf3f3] absolute top-[68.93%] left-[11.65%] box-content z-[1]' />
-      <span className="flex h-[2.2%] justify-start items-start font-['B612_Mono'] text-[30px] font-bold leading-[36px] text-[#fff] absolute top-[70.27%] left-[12.85%] text-left whitespace-nowrap z-[2]">
-        This is some sample text that the user will input.
-      </span>
-      <div className='w-[7.25%] h-[2.93%] bg-[#ccd3df] rounded-[30px] absolute top-[88.58%] left-[79.78%] shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] z-[7]' />
+     {/* <div className='w-[7.25%] h-[2.93%] bg-[#ccd3df] rounded-[30px] absolute top-[88.58%] left-[79.78%] shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] z-[7]' />
       <div className='w-[2.34%] h-[2.01%] bg-[url(../assets/images/e71b4f01-4635-4661-9d36-57a9c5945a85.png)] bg-[length:100%_100%] bg-no-repeat absolute top-[89.01%] left-[82.24%] z-[8]' />
+    */}
+      <div className='w-[76.76%] h-[24.54%] bg-gray-300 rounded-[15px] border-solid border border-gray-400 absolute top-[68.93%] left-[11.65%] box-content z-[1]' >
+        <textarea
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+          className="w-full h-full p-4 bg-transparent resize-none outline-none"
+          placeholder="Message Ai Chatbot..."
+        />
+
+<div
+  onClick={handleSend}
+  className='w-[8%] h-[10%] bg-[#ccd3df] rounded-[30px] flex justify-center items-center absolute top-[88.58%] left-[90%] shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] z-[7]'
+  style={{ cursor: 'pointer' }}
+>
+  <img
+    src="../assets/images/e71b4f01-4635-4661-9d36-57a9c5945a85.png"
+    alt="Send Image"
+    className='w-[60%] h-[100%] rounded-[30px]'
+  />
+</div>
+      </div>
+    
     </div>
   );
 }
