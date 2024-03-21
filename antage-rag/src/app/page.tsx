@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function Home() {
   // State to store the selected file
   const [selectedFile, setSelectedFile] = useState(null);
   const [userInput, setUserInput] = useState(""); // State to store user input
+  const [responseData, setResponseData] = useState(null);
   // Get the current date and format it
   const currentDate = new Date();
   const dateOptions: Intl.DateTimeFormatOptions = {
@@ -35,10 +36,30 @@ export default function Home() {
     }
   };*/
 
+  // useffect to re render when response data changes
+  useEffect(() => {
+    console.log("Response data:", responseData);
+  }, [responseData]);
+
   const handleSend = () => {
     // Action when user hits Send button
     console.log("User input:", userInput);
-    // add code here which sends the user input to the chatbot
+
+    fetch("http://localhost:3000/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message: userInput }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setResponseData(data); // Store the response data
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
   return (
     <div className="main-container w-[1751px] h-[1638px] relative mx-auto my-0">
@@ -58,9 +79,12 @@ export default function Home() {
         ChatGPT:
       </span>
       <span className="flex w-[1344px] h-[195px] justify-start items-start font-['B612_Mono'] text-[30px] font-bold leading-[36.45px] text-[#fff] relative text-left z-[1] mt-0 mr-0 mb-0 ml-[204px]">
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat."
+        {responseData &&
+          Object.entries(responseData).map(([key, value]) => (
+            <div key={key}>
+              <strong>{key}:</strong> {value}
+            </div>
+          ))}
       </span>
 
       {/* Remove upload button
@@ -78,7 +102,12 @@ export default function Home() {
         {/* Display selected file name 
         {selectedFile && <p>{selectedFile.name}</p>}
         </div> */}
-
+      <div>
+        {responseData &&
+          Object.entries(responseData).map(([key, value]) => (
+            <div key={key}>{value}</div>
+          ))}
+      </div>
       <div className="w-full h-full bg-[#1e293c] border-solid border border-[#000] absolute top-0 left-0" />
 
       <div className="w-[70%] bg-[#403c3c] rounded-[15px] border-solid border border-[#D0D3D4] fixed bottom-12 left-1/2 transform -translate-x-1/2 z-[1]">
