@@ -1,113 +1,101 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 
 export default function Home() {
+  // State to store the selected file
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [userInput, setUserInput] = useState(""); // State to store user input
+  // Get the current date and format it
+  const currentDate = new Date();
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  };
+  const formattedDate = currentDate.toLocaleDateString("en-US", dateOptions);
+
+  /* removed file upload functionality
+  Event handler for file input change
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+
+  // Event handler for upload button click
+  const handleUpload = () => {
+    // Perform upload logic with the selectedFile
+    if (selectedFile) {
+      // You can use this selectedFile for further processing, e.g., uploading to a server.
+      console.log('Selected File:', selectedFile);
+      // Add your upload logic here
+    } else {
+      console.log('No file selected');
+    }
+  };*/
+
+  const handleSend = () => {
+    // Action when user hits Send button
+    console.log("User input:", userInput);
+    // add code here which sends the user input to the chatbot
+  };
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <div className="main-container w-[1751px] h-[1638px] relative mx-auto my-0">
+      <div className="w-[102px] h-[84px]  bg-cover bg-no-repeat relative z-10 mt-[16px] mr-0 mb-0 ml-[13px]" />
+      <div className="w-[303px] h-[292px]  bg-cover bg-no-repeat rounded-[39px] relative z-[9] mt-[18px] mr-0 mb-0 ml-[713px]" />
+      <span className="block h-[53px] font-['B612_Mono'] text-[36px] font-normal leading-[43.74px] text-[#fff] relative text-left whitespace-nowrap z-[6] mt-[13px] mr-0 mb-0 ml-[683px]">
+        {formattedDate} {/** Display the formatted date here */}
+      </span>
+      <div className="w-[1344.003px] h-[5.116px] bg-[length:100%_100%] bg-no-repeat relative z-[3] mt-[12px] mr-0 mb-0 ml-[208px]" />
+      <span className="flex w-[1284px] h-[244px] justify-start items-start font-['B612_Mono'] text-[30px] font-bold leading-[36.45px] text-[#fff] z-[1] relative text-left mt-[43.884px] mr-0 mb-0 ml-[211px]">
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat."
+      </span>
+      <span className="block h-[42px] font-['B612_Mono'] text-[30px] font-bold leading-[36.45px] text-[#fff] relative text-left whitespace-nowrap z-[1] mt-[17px] mr-0 mb-0 ml-[204px]">
+        ChatGPT:
+      </span>
+      <span className="flex w-[1344px] h-[195px] justify-start items-start font-['B612_Mono'] text-[30px] font-bold leading-[36.45px] text-[#fff] relative text-left z-[1] mt-0 mr-0 mb-0 ml-[204px]">
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat."
+      </span>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+      {/* Remove upload button
+      <div className='flex w-[127px] pt-[10px] pr-[10px] pb-[10px] pl-[10px] gap-[10px] justify-center items-center flex-nowrap relative z-[11] mt-[496px] mr-0 mb-0 ml-[204px]'>
+        {/* File input 
+        <input type="file" accept=".png, .jpg, .jpeg, .CSV" onChange={handleFileChange} style={{ display: 'none' }} id="fileInput" />
+        
+        {/* Upload button 
+        <label htmlFor="fileInput" className='flex w-[138px] pt-[10px] pr-[10px] pb-[10px] pl-[10px] gap-[10px] justify-center items-center shrink-0 flex-nowrap bg-[#cdd4df] rounded-[20px] border-none relative z-[12] pointer'>
+          <span className="h-[36px] shrink-0 basis-auto font-['B612_Mono'] text-[30px] font-bold leading-[36px] text-[#1a1717] relative text-left whitespace-nowrap z-[13]">
+            Upload
+          </span>
+        </label>
+
+        {/* Display selected file name 
+        {selectedFile && <p>{selectedFile.name}</p>}
+        </div> */}
+
+      <div className="w-full h-full bg-[#1e293c] border-solid border border-[#000] absolute top-0 left-0" />
+
+      <div className="w-[70%] bg-[#403c3c] rounded-[15px] border-solid border border-[#D0D3D4] fixed bottom-12 left-1/2 transform -translate-x-1/2 z-[1]">
+        <textarea
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+          className="w-full h-[80%] p-4 resize-none outline-none bg-transparent text-white border-0" // Changed background to transparent and removed border
+          placeholder="Message Chatbot..."
         />
+
+        <div
+          onClick={handleSend}
+          className="absolute top-11 right-2 w-[6%] h-[40%] bg-[#ccd3df] rounded-[30px] flex justify-center items-center shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
+          style={{ cursor: "pointer" }}
+        ></div>
       </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            hello there peoples
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }
