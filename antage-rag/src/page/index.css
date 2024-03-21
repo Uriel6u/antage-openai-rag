@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 :root {
   --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -9,7 +9,7 @@
     "Source Han Sans CN", sans-serif;
 }
 
-.main-container {
+.main-container { 
   overflow: hidden;
 }
 
@@ -24,3 +24,4 @@ textarea,
 button {
   outline: 0;
 }
+
