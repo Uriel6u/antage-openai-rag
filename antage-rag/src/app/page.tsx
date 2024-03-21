@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import './index.css';
+"use client";
 
+import { useState } from "react";
+import Image from "next/image";
 
-export default function Main() {
+export default function Home() {
   // State to store the selected file
   const [selectedFile, setSelectedFile] = useState(null);
-  const [userInput, setUserInput] = useState(''); // State to store user input
+  const [userInput, setUserInput] = useState(""); // State to store user input
   // Get the current date and format it
   const currentDate = new Date();
-  const dateOptions: Intl.DateTimeFormatOptions =  { 
-    weekday: 'long',
-      month: 'long', 
-      day: 'numeric' 
-    };
-  const formattedDate = currentDate.toLocaleDateString('en-US', dateOptions);
-  
-  
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  };
+  const formattedDate = currentDate.toLocaleDateString("en-US", dateOptions);
+
   /* removed file upload functionality
   Event handler for file input change
   const handleFileChange = (event) => {
@@ -35,20 +35,19 @@ export default function Main() {
     }
   };*/
 
-
   const handleSend = () => {
     // Action when user hits Send button
-    console.log('User input:', userInput);
+    console.log("User input:", userInput);
     // add code here which sends the user input to the chatbot
   };
   return (
-    <div className='main-container w-[1751px] h-[1638px] relative mx-auto my-0'>
-      <div className='w-[102px] h-[84px] bg-[url(../assets/images/Antagelogo.png)] bg-cover bg-no-repeat relative z-10 mt-[16px] mr-0 mb-0 ml-[13px]' />
-      <div className='w-[303px] h-[292px] bg-[url(../assets/images/OpenAI.png)] bg-cover bg-no-repeat rounded-[39px] relative z-[9] mt-[18px] mr-0 mb-0 ml-[713px]' />
+    <div className="main-container w-[1751px] h-[1638px] relative mx-auto my-0">
+      <div className="w-[102px] h-[84px]  bg-cover bg-no-repeat relative z-10 mt-[16px] mr-0 mb-0 ml-[13px]" />
+      <div className="w-[303px] h-[292px]  bg-cover bg-no-repeat rounded-[39px] relative z-[9] mt-[18px] mr-0 mb-0 ml-[713px]" />
       <span className="block h-[53px] font-['B612_Mono'] text-[36px] font-normal leading-[43.74px] text-[#fff] relative text-left whitespace-nowrap z-[6] mt-[13px] mr-0 mb-0 ml-[683px]">
         {formattedDate} {/** Display the formatted date here */}
       </span>
-      <div className='w-[1344.003px] h-[5.116px] bg-[url(../assets/images/69edfdd2-adeb-4fb3-90eb-60a625e364fb.png)] bg-[length:100%_100%] bg-no-repeat relative z-[3] mt-[12px] mr-0 mb-0 ml-[208px]' />
+      <div className="w-[1344.003px] h-[5.116px] bg-[length:100%_100%] bg-no-repeat relative z-[3] mt-[12px] mr-0 mb-0 ml-[208px]" />
       <span className="flex w-[1284px] h-[244px] justify-start items-start font-['B612_Mono'] text-[30px] font-bold leading-[36.45px] text-[#fff] z-[1] relative text-left mt-[43.884px] mr-0 mb-0 ml-[211px]">
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -80,10 +79,10 @@ export default function Main() {
         {/* Display selected file name 
         {selectedFile && <p>{selectedFile.name}</p>}
         </div> */}
-      
-      <div className='w-full h-full bg-[#1e293c] border-solid border border-[#000] absolute top-0 left-0' />
 
-      <div className='w-[70%] bg-[#403c3c] rounded-[15px] border-solid border border-[#D0D3D4] fixed bottom-12 left-1/2 transform -translate-x-1/2 z-[1]'>
+      <div className="w-full h-full bg-[#1e293c] border-solid border border-[#000] absolute top-0 left-0" />
+
+      <div className="w-[70%] bg-[#403c3c] rounded-[15px] border-solid border border-[#D0D3D4] fixed bottom-12 left-1/2 transform -translate-x-1/2 z-[1]">
         <textarea
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
@@ -93,16 +92,10 @@ export default function Main() {
 
         <div
           onClick={handleSend}
-          className='absolute top-11 right-2 w-[6%] h-[40%] bg-[#ccd3df] rounded-[30px] flex justify-center items-center shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]'
-          style={{ cursor: 'pointer' }}
-        >
-          <img
-            src="../assets/images/e71b4f01-4635-4661-9d36-57a9c5945a85.png"
-            alt="Send Image"
-            className='w-[60%] h-[70%] rounded-[30px]'
-          />
-        </div>
+          className="absolute top-11 right-2 w-[6%] h-[40%] bg-[#ccd3df] rounded-[30px] flex justify-center items-center shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
+          style={{ cursor: "pointer" }}
+        ></div>
       </div>
-  </div>
+    </div>
   );
 }
