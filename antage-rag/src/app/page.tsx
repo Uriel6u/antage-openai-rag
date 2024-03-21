@@ -59,7 +59,6 @@ export default function Home() {
       </span>
       <span className="flex w-[1344px] h-[195px] justify-start items-start font-['B612_Mono'] text-[30px] font-bold leading-[36.45px] text-[#fff] relative text-left z-[1] mt-0 mr-0 mb-0 ml-[204px]">
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat."
       </span>
