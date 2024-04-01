@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
 export default function Home() {
   // State to store the selected file
@@ -62,67 +61,63 @@ export default function Home() {
       });
   };
   return (
-    <div className="main-container w-[1751px] h-[1638px] relative mx-auto my-0">
-      <div className="w-[102px] h-[84px]  bg-cover bg-no-repeat relative z-10 mt-[16px] mr-0 mb-0 ml-[13px]" />
-      <div className="w-[303px] h-[292px]  bg-cover bg-no-repeat rounded-[39px] relative z-[9] mt-[18px] mr-0 mb-0 ml-[713px]" />
-      <span className="block h-[53px] font-['B612_Mono'] text-[36px] font-normal leading-[43.74px] text-[#fff] relative text-left whitespace-nowrap z-[6] mt-[13px] mr-0 mb-0 ml-[683px]">
-        {formattedDate} {/** Display the formatted date here */}
-      </span>
-      <div className="w-[1344.003px] h-[5.116px] bg-[length:100%_100%] bg-no-repeat relative z-[3] mt-[12px] mr-0 mb-0 ml-[208px]" />
-      <span className="flex w-[1284px] h-[244px] justify-start items-start font-['B612_Mono'] text-[30px] font-bold leading-[36.45px] text-[#fff] z-[1] relative text-left mt-[43.884px] mr-0 mb-0 ml-[211px]">
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat."
-      </span>
-      <span className="block h-[42px] font-['B612_Mono'] text-[30px] font-bold leading-[36.45px] text-[#fff] relative text-left whitespace-nowrap z-[1] mt-[17px] mr-0 mb-0 ml-[204px]">
-        ChatGPT:
-      </span>
-      <span className="flex w-[1344px] h-[195px] justify-start items-start font-['B612_Mono'] text-[30px] font-bold leading-[36.45px] text-[#fff] relative text-left z-[1] mt-0 mr-0 mb-0 ml-[204px]">
-        {responseData &&
-          Object.entries(responseData).map(([key, value]) => (
-            <div key={key}>
-              <strong>{key}:</strong> {value}
-            </div>
-          ))}
+    <div className='main-container min-h-screen flex flex-col items-center bg-[rgba(30,41,60,1)]'>
+      {/*Antage logo*/}
+      <div className='w-24 h-20 bg-[url(../../assets/images/Antagelogo.png)] bg-cover bg-no-repeat absolute top-3 left-2 ' />
+      {/*openai image*/}
+      <div className='w-64 h-64 bg-[url(../../assets/images/OpenAI.png)] bg-cover bg-no-repeat rounded-lg mt-8' />
+      {/*date*/}
+      <span className="block mt-4 text-xl text-white">
+        {formattedDate} {/* Display the formatted date here */}
       </span>
 
-      {/* Remove upload button
-      <div className='flex w-[127px] pt-[10px] pr-[10px] pb-[10px] pl-[10px] gap-[10px] justify-center items-center flex-nowrap relative z-[11] mt-[496px] mr-0 mb-0 ml-[204px]'>
-        {/* File input 
-        <input type="file" accept=".png, .jpg, .jpeg, .CSV" onChange={handleFileChange} style={{ display: 'none' }} id="fileInput" />
-        
-        {/* Upload button 
-        <label htmlFor="fileInput" className='flex w-[138px] pt-[10px] pr-[10px] pb-[10px] pl-[10px] gap-[10px] justify-center items-center shrink-0 flex-nowrap bg-[#cdd4df] rounded-[20px] border-none relative z-[12] pointer'>
-          <span className="h-[36px] shrink-0 basis-auto font-['B612_Mono'] text-[30px] font-bold leading-[36px] text-[#1a1717] relative text-left whitespace-nowrap z-[13]">
-            Upload
-          </span>
-        </label>
 
-        {/* Display selected file name 
-        {selectedFile && <p>{selectedFile.name}</p>}
-        </div> */}
-      <div>
-        {responseData &&
-          Object.entries(responseData).map(([key, value]) => (
-            <div key={key}>{value}</div>
-          ))}
+      <div className="w-full max-w-screen-lg mt-4 flex flex-col items-center">
+        {/* chat history of user */}
+        <div className="w-full max-w-sreen-lg mt-4">
+          <span className="block mt-4 text-lg font-bold text-white">User:</span>
+          <div className="bg-[#0c4a6e] rounded-lg border border-gray-300 p-4 text-white w-full">
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eleifend non leo cursus mollis. Nulla sit amet eros tincidunt libero venenatis vulputate tempor quis velit. Nam mi metus,
+           tempus eget neque in, blandit ornare augue. Morbi lobortis, augue id faucibus volutpat, felis magna eleifend eros, mattis egestas velit lorem id ante. Nulla a pretium leo, a finibus nibh.
+            Quisque consectetur rutrum mi, quis cursus nulla vehicula varius. Nullam libero odio, rutrum nec mollis vehicula, eleifend id mi. Suspendisse lacus nibh, sagittis sit amet lorem id, venenatis"
+           
+          </div>
+        </div>
+
+        {/* Chat history of ai response */}
+        <div className="w-full max-w-sreen-lg mt-4">
+          <span className="block mt-4 text-lg font-bold text-white">ai Assistant:</span>
+          <div className="bg-[#0c4a6e] rounded-lg border border-gray-300 p-4 text-white w-full">
+          {responseData &&
+            Object.entries(responseData).map(([key, value]) => (
+              <div key={key}>
+                <strong>{key}:</strong> {value}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-      <div className="w-full h-full bg-[#1e293c] border-solid border border-[#000] absolute top-0 left-0" />
+      {/* chatbox */}
+      <div className="w-full max-w-screen-lg bg-[#403c3c] rounded-lg border border-gray-300 fixed bottom-12">
 
-      <div className="w-[70%] bg-[#403c3c] rounded-[15px] border-solid border border-[#D0D3D4] fixed bottom-12 left-1/2 transform -translate-x-1/2 z-[1]">
         <textarea
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          className="w-full h-[80%] p-4 resize-none outline-none bg-transparent text-white border-0" // Changed background to transparent and removed border
+          className="w-full h-[80%] p-4 resize-none outline-none bg-transparent text-white border-0"
           placeholder="Message Chatbot..."
         />
 
         <div
           onClick={handleSend}
-          className="absolute top-11 right-2 w-[6%] h-[40%] bg-[#ccd3df] rounded-[30px] flex justify-center items-center shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]"
+          className="flex justify-center items-center w-16 h-9 bg-[#ccd3df] rounded-full absolute bottom-4 right-4 cursor-pointer"
           style={{ cursor: "pointer" }}
-        ></div>
+        >
+          <img
+            src="../../assets/images/sendButton.png"
+            alt="Send Image"
+            className='w-[60%] h-[70%] '
+          />
+        </div>
       </div>
     </div>
   );
