@@ -7,6 +7,18 @@ export default function Home() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [userInput, setUserInput] = useState(""); // State to store user input
   const [responseData, setResponseData] = useState(null);
+
+  const [isTyping, setIsTyping] = useState(false); //Boolean value to determine whether user is typing
+ 
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setUserInput(e.target.value);
+    setIsTyping(true); // Set typing state to true when user starts typing
+
+    if(e.target.value === ""){ //If user has empty message, change back to original button color
+      setIsTyping(false);
+    }
+  };
+
   // Get the current date and format it
   const currentDate = new Date();
   const dateOptions: Intl.DateTimeFormatOptions = {
@@ -41,6 +53,9 @@ export default function Home() {
   }, [responseData]);
 
   const handleSend = () => {
+    setUserInput(""); //Clears the text box after a message is sent
+    setIsTyping(false);
+
     // Action when user hits Send button
     console.log("User input:", userInput);
 
@@ -102,18 +117,20 @@ export default function Home() {
 
         <textarea
           value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
+          onChange={(e) => {setUserInput(e.target.value);
+            handleInputChange(e);}} //Changes color of send button when user starts typing
           className="w-full h-[80%] p-4 resize-none outline-none bg-transparent text-white border-0"
           placeholder="Message Chatbot..."
         />
 
         <div
           onClick={handleSend}
-          className="flex justify-center items-center w-16 h-9 bg-[#ccd3df] rounded-full absolute bottom-4 right-4 cursor-pointer"
-          style={{ cursor: "pointer" }}
+          className="flex justify-center items-center w-16 h-9 bg-[#4e5259] rounded-full absolute bottom-4 right-4 cursor-pointer"
+          style={{ cursor: "pointer", backgroundColor: isTyping ? '#f2f3f5' : '#4e5259'}} //If user is typing, change color of send button
+
         >
           <img
-            src="../../assets/images/sendButton.png"
+            src="../../assets/images/send.png"
             alt="Send Image"
             className='w-[60%] h-[70%] '
           />
