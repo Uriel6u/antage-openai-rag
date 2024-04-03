@@ -140,7 +140,7 @@ export default function Home() {
 
         >
           <img
-            src="../../assets/images/send.png"
+            src="../../assets/images/sendButton.png"
             alt="Send Image"
             className='w-[60%] h-[70%] '
           />
